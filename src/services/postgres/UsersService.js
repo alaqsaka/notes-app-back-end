@@ -31,7 +31,7 @@ class UsersService {
 
   async getUserById(userId) {
     const query = {
-      text: "SELECT id, username, fullname FROM users WHERE id = $1",
+      text: 'SELECT id, username, "fullName" FROM users WHERE id = $1',
       values: [userId],
     };
 
@@ -54,7 +54,7 @@ class UsersService {
 
     if (result.rows.length > 0) {
       throw new InvariantError(
-        "Gagal menambahkan user. Username sudah digunakan"
+        "Gagal menambahkan user. Username sudah digunakan."
       );
     }
   }
