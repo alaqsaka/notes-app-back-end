@@ -7,9 +7,10 @@ class AuthenticationsHandler {
     this._tokenManager = tokenManager;
     this._validator = validator;
 
-    this.postAuthenticationHandler = this.postAuthenticationHandler(this);
-    this.putAuthenticationHandler = this.putAuthenticationHandler(this);
-    this.deleteAuthenticationHandler = this.deleteAuthenticationHandler(this);
+    this.postAuthenticationHandler = this.postAuthenticationHandler.bind(this);
+    this.putAuthenticationHandler = this.putAuthenticationHandler.bind(this);
+    this.deleteAuthenticationHandler =
+      this.deleteAuthenticationHandler.bind(this);
   }
 
   async postAuthenticationHandler(request, h) {
@@ -43,12 +44,11 @@ class AuthenticationsHandler {
           status: "fail",
           message: error.message,
         });
-
         response.code(error.statusCode);
         return response;
       }
 
-      // SERVER ERROR
+      // Server ERROR!
       const response = h.response({
         status: "error",
         message: "Maaf, terjadi kegagalan pada server kami.",
