@@ -1,4 +1,4 @@
-const Jwt = require("@hapi/hapi");
+const Jwt = require("@hapi/jwt");
 const InvariantError = require("../exceptions/InvariantError");
 
 const TokenManager = {
